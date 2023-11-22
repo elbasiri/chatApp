@@ -1,17 +1,19 @@
-
 {
     "version": 2,
     "builds": [
       {
-        "src": "server/**/*.js",
+        "src": "test-chat-app-nj/**/*",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "test-chat-app-nj/app.js",
         "use": "@now/node"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/server/$1"
+        "dest": "/test-chat-app-nj/app.js"
       }
     ]
   }
-  
