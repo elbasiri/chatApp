@@ -10,7 +10,7 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/chatApp', {
+mongoose.connect('mongodb+srv://elbasiriothman:othmanelbasiri@cluster0.vz3oynv.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
