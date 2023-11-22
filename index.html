@@ -45,7 +45,7 @@
     socket.on('chat history', function (messages) {
       messages.forEach(function (msg) {
         const timestamp = new Date().toLocaleTimeString();
-        $('#messages').append($('<li>').text(`${timestamp} - ${msg.senderId} said: ${msg.text}`));
+        $('#messages').append($('<li>').text(`${timestamp} - ${msg.senderId} : ${msg.text}`));
       });
     });
 
