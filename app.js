@@ -1,5 +1,5 @@
 // app.js
-
+const cors = require('cors');
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
+app.use(cors());
 
 // Use a fallback connection string for local development
 const localMongoURI = 'mongodb+srv://elbasiriothman:othmanelbasiri@cluster0.vz3oynv.mongodb.net/?retryWrites=true&w=majority';
