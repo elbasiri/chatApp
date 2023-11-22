@@ -9,11 +9,12 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
+// Use a fallback connection string for local development
+const localMongoURI = 'mongodb+srv://elbasiriothman:othmanelbasiri@cluster0.vz3oynv.mongodb.net/?retryWrites=true&w=majority';
+
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://elbasiriothman:othmanelbasiri@cluster0.vz3oynv.mongodb.net/?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(process.env.MONGODB_URI || localMongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+
 const db = mongoose.connection;
 
 db.on('error', (err) => {
