@@ -48,7 +48,7 @@ io.on('connection', (socket) => {
   Message.find({})
     .exec()
     .then((messages) => {
-      io.emit('chat history', messages);
+      io.emit('chat history', 'dfsfsd');
     })
     .catch((err) => {
       console.error('Error fetching chat history:', err);
