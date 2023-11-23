@@ -1,12 +1,12 @@
 // app.js
 import cors from 'cors';
 import express from 'express';
-import { createServer, http } from 'http';
+import { createServer } from 'http';
 import socketIo from 'socket.io';
 import { connect, connection, Schema, model } from 'mongoose';
 
 const app = express();
-const server = http.createServer(app);
+const server = createServer(app);
 const io = socketIo(server);
 app.use(cors());
 
