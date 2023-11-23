@@ -1,12 +1,12 @@
 // app.js
-const cors = require('cors');
-const express = require('express');
-const http = require('http');
-const socketIo = require('socket.io');
-const mongoose = require('mongoose');
+import cors from 'cors';
+import express from 'express';
+import { createServer } from 'http';
+import socketIo from 'socket.io';
+import { connect, connection, Schema, model } from 'mongoose';
 
 const app = express();
-const server = http.createServer(app);
+const server = createServer(app);
 const io = socketIo(server);
 app.use(cors());
 
@@ -14,22 +14,22 @@ app.use(cors());
 const localMongoURI = 'mongodb+srv://elbasiriothman:othmanelbasiri@cluster0.vz3oynv.mongodb.net/?retryWrites=true&w=majority';
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || localMongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+connect(process.env.MONGODB_URI || localMongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const db = mongoose.connection;
+const db = connection;
 
 db.on('error', (err) => {
   console.error('MongoDB connection error:', err);
 });
 
-const messageSchema = new mongoose.Schema({
+const messageSchema = new Schema({
   senderId: String,
   username: String,
   text: String,
 });
 
 
-const Message = mongoose.model('Message', messageSchema);
+const Message = model('Message', messageSchema);
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
