@@ -1,12 +1,12 @@
 // app.js
 import cors from 'cors';
 import express from 'express';
-import { createServer } from 'http';
+import { createServer, http } from 'http';
 import socketIo from 'socket.io';
 import { connect, connection, Schema, model } from 'mongoose';
 
 const app = express();
-const server = createServer(app);
+const server = http.createServer(app);
 const io = socketIo(server);
 app.use(cors());
 
@@ -72,7 +72,7 @@ socket.on('chat message', (data) => {
   });
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 443;
 
 server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
