@@ -2,13 +2,21 @@
 import cors from 'cors';
 import express from 'express';
 import { createServer } from 'http';
-import socketIo from 'socket.io';
-import { connect, connection, Schema, model } from 'mongoose';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import {Server} from 'socket.io';
+import connection from 'mongoose';
+import { connect, Schema, model } from 'mongoose';
 
 const app = express();
 const server = createServer(app);
-const io = socketIo(server);
+const io = new Server(server);
 app.use(cors());
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 
 // Use a fallback connection string for local development
 const localMongoURI = 'mongodb+srv://elbasiriothman:othmanelbasiri@cluster0.vz3oynv.mongodb.net/?retryWrites=true&w=majority';
@@ -18,9 +26,6 @@ connect(process.env.MONGODB_URI || localMongoURI, { useNewUrlParser: true, useUn
 
 const db = connection;
 
-db.on('error', (err) => {
-  console.error('MongoDB connection error:', err);
-});
 
 const messageSchema = new Schema({
   senderId: String,
