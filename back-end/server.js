@@ -5,6 +5,7 @@ import authRoutes from './auth.js';
 import { WebSocketServer } from 'ws';
 
 const app = express();
+app.use(cors());
 
 // Connect to MongoDB Atlas
 mongoose.connect('mongodb+srv://elbasiriothman:othmanelbasiri@cluster0.vz3oynv.mongodb.net/?retryWrites=true&w=majority', {
@@ -22,7 +23,6 @@ const messageSchema = new mongoose.Schema({
 // Create a Mongoose model from the schema
 const Message = mongoose.model('Message', messageSchema);
 
-app.use(cors());
 app.use(express.json());
 
 // Routes
