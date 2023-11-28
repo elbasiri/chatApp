@@ -8,7 +8,7 @@ function Chat() {
   const sender = email.split("@")[0];
 
   useEffect(() => {
-    const ws = new WebSocket('ws://chat-app-olive-kappa.vercel.app/');
+    const ws = new WebSocket('ws://localhost:5000/');
     ws.onopen = () => console.log('WebSocket is open now.');
     ws.onclose = () => console.log('WebSocket is closed now.');
     ws.onerror = (error) => console.log('WebSocket error: ', error);

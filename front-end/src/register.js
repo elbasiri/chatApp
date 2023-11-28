@@ -9,7 +9,7 @@ const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('https://chat-app-olive-kappa.vercel.app/api/auth/register', {
+    const response = await fetch('http://localhost:5000/api/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
