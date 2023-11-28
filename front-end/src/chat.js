@@ -68,7 +68,7 @@ function Chat() {
       
 
   return (
-<div>
+<div className='chat'>
 <ul>
   {Messages && Messages[0] && Messages[0].slice().reverse().map((message, index) => (
     <li key={index}>
